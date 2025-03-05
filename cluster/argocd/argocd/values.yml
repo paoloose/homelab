@@ -1,0 +1,20 @@
+global:
+  domain: argocd.paoloose.site
+
+configs: {}
+
+server:
+  ingress:
+    enabled: true
+    ingressClassName: traefik
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+      app.kubernetes.io/name: argocd
+      app.kubernetes.io/component: server
+      app.kubernetes.io/part-of: argocd
+    extraTls:
+    - secretName: argocd-tls
+      hosts:
+      - argocd.paoloose.site
