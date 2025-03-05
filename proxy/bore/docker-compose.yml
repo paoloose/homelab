@@ -1,0 +1,24 @@
+services:
+  port80:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    network_mode: "host"
+    env_file: .env
+    command: local --secret=${BORE_SECRET} --local-host 0.0.0.0 --to bore.paoloose.site 80 --port 80
+
+  port443:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    network_mode: "host"
+    env_file: .env
+    command: local --secret=${BORE_SECRET} --local-host 0.0.0.0 --to bore.paoloose.site 443 --port 443
+
+  port56969:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    network_mode: "host"
+    env_file: .env
+    command: local --secret=${BORE_SECRET} --local-host 0.0.0.0 --to bore.paoloose.site 56969 --port 56969
